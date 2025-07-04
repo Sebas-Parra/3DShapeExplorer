@@ -7,7 +7,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace _3D_SHAPE_EXPLORER.Models
 {
-    public class Pyramid : Shape3D
+    public class Octahedron : Shape3D
     {
         public override void GenerateShape()
         {
@@ -15,27 +15,34 @@ namespace _3D_SHAPE_EXPLORER.Models
             Points.Clear();
             Edges.Clear();
 
-            Points.AddRange(new[] {
-                new Point3D(-s, -s, -s), 
-                new Point3D(s, -s, -s),
-                new Point3D(s, -s, s), 
-                new Point3D(-s, -s, s),
-                new Point3D(0, s, 0)
-            });
+            Points.AddRange(new[]
+            {
+            new Point3D(0,  s,  0),
+            new Point3D(-s, 0,  0), 
+            new Point3D(0,  0,  s), 
+            new Point3D(s,  0,  0), 
+            new Point3D(0,  0, -s), 
+            new Point3D(0, -s,  0), 
+        });
 
             Edges.AddRange(new[]
             {
-                (0,1),(1,2),(2,3),(3, 0),
-                (0,4),(1,4),(2,4),(3,4)
-            });
+            (0,1), (0,2), (0,3), (0,4),
+            (5,1), (5,2), (5,3), (5,4), 
+            (1,2), (2,3), (3,4), (4,1)  
+        });
 
             Faces.AddRange(new List<List<int>>
             {
-                new List<int> {0, 1, 2, 3},   
-                new List<int> {0, 1, 4},      
-                new List<int> {1, 2, 4},     
-                new List<int> {2, 3, 4},     
-                new List<int> {3, 0, 4}       
+                new List<int> { 0, 1, 2 },
+                new List<int> { 0, 2, 3 },
+                new List<int> { 0, 3, 4 },
+                new List<int> { 0, 4, 1 },
+
+                new List<int> { 5, 2, 1 },
+                new List<int> { 5, 3, 2 },
+                new List<int> { 5, 4, 3 },
+                new List<int> { 5, 1, 4 }
             });
 
             OriginalPoints = Points.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList();
@@ -44,7 +51,7 @@ namespace _3D_SHAPE_EXPLORER.Models
 
         public override Shape3D Clone()
         {
-            var clone = new Pyramid();
+            var clone = new Octahedron();
             clone.OriginalPoints = this.OriginalPoints.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList();
             clone.Points = clone.OriginalPoints.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList(); 
             clone.Faces = this.Faces.Select(face => new List<int>(face)).ToList();

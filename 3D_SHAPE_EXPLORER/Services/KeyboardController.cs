@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using _3D_SHAPE_EXPLORER.Models;
 
 namespace _3D_SHAPE_EXPLORER.Services
 {
@@ -12,22 +13,15 @@ namespace _3D_SHAPE_EXPLORER.Services
         private readonly Timer timer = new Timer();
         private readonly HashSet<Keys> keys = new HashSet<Keys>();
         private readonly Control targetCanvas;
+        private readonly SceneManager sceneManager;
 
-        public float RotX { get; private set; }
-        public float RotY { get; private set; }
-        public float RotZ { get; private set; }
+        private const float RotationStep = 2f;
+        private const float ScaleStep = 0.05f;
+        private const float TranslationStep = 2f;
 
-        public float ScaleFactor { get; private set; } = 1f;
-        private const float scaleStep = 0.05f;
-
-        public float TranslateX { get; private set; }
-        public float TranslateY { get; private set; }
-        public float TranslateZ { get; private set; }
-
-        private const float transStep = 2f;
-
-        public KeyboardController(Form form, Control canvas)
+        public KeyboardController(Form form, Control canvas, SceneManager manager)
         {
+            sceneManager = manager;
             targetCanvas = canvas;
 
             form.KeyPreview = true;
@@ -41,40 +35,31 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         private void UpdateTransformations()
         {
-            int step = 2;
-            //Rotation
-            if (keys.Contains(Keys.Up)) RotX -= step;
-            if (keys.Contains(Keys.Down)) RotX += step;
-            if (keys.Contains(Keys.Left)) RotY -= step;
-            if (keys.Contains(Keys.Right)) RotY += step;
-            if (keys.Contains(Keys.A)) RotZ -= step;
-            if (keys.Contains(Keys.D)) RotZ += step;
+            Shape3D selectedShape = sceneManager.Shapes.Find(s => s.IsSelected);
+            if (selectedShape == null)
+                return;
 
-            //Scale
-            if (keys.Contains(Keys.W)) ScaleFactor += scaleStep;
-            if (keys.Contains(Keys.S)) ScaleFactor = Math.Max(0.1f, ScaleFactor - scaleStep); // evita que sea negativo
+            // Rotación
+            if (keys.Contains(Keys.NumPad4)) selectedShape.RotationX -= RotationStep;
+            if (keys.Contains(Keys.NumPad6)) selectedShape.RotationX += RotationStep;
+            if (keys.Contains(Keys.NumPad8)) selectedShape.RotationY -= RotationStep;
+            if (keys.Contains(Keys.NumPad2)) selectedShape.RotationY += RotationStep;
+            if (keys.Contains(Keys.A)) selectedShape.RotationZ -= RotationStep;
+            if (keys.Contains(Keys.D)) selectedShape.RotationZ += RotationStep;
 
-            //Traslation
-            if (keys.Contains(Keys.J)) TranslateX -= transStep;
-            if (keys.Contains(Keys.L)) TranslateX += transStep;
-            if (keys.Contains(Keys.I)) TranslateY += transStep;
-            if (keys.Contains(Keys.K)) TranslateY -= transStep;
-            if (keys.Contains(Keys.U)) TranslateZ -= transStep;
-            if (keys.Contains(Keys.O)) TranslateZ += transStep;
+            // Escalado
+            if (keys.Contains(Keys.W)) selectedShape.ScaleFactor += ScaleStep;
+            if (keys.Contains(Keys.S)) selectedShape.ScaleFactor = Math.Max(0.1f, selectedShape.ScaleFactor - ScaleStep);
+
+            // Traslación
+            if (keys.Contains(Keys.J)) selectedShape.TranslateX -= TranslationStep;
+            if (keys.Contains(Keys.L)) selectedShape.TranslateX += TranslationStep;
+            if (keys.Contains(Keys.I)) selectedShape.TranslateY += TranslationStep;
+            if (keys.Contains(Keys.K)) selectedShape.TranslateY -= TranslationStep;
+            if (keys.Contains(Keys.U)) selectedShape.TranslateZ -= TranslationStep;
+            if (keys.Contains(Keys.O)) selectedShape.TranslateZ += TranslationStep;
 
             targetCanvas.Invalidate(); // Redibuja
-        }
-
-        public void GetTransformations(out float rotX, out float rotY, out float rotZ,
-                                       out float scale, out float dx, out float dy, out float dz)
-        {
-            rotX = RotX;
-            rotY = RotY;
-            rotZ = RotZ;
-            scale = ScaleFactor;
-            dx = TranslateX;
-            dy = TranslateY;
-            dz = TranslateZ;
         }
     }
 }
