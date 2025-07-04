@@ -26,7 +26,9 @@ namespace _3D_SHAPE_EXPLORER.Services
 
             form.KeyPreview = true;
             form.KeyDown += (s, e) => keys.Add(e.KeyCode);
+            form.KeyDown += HandleDeleteKey;
             form.KeyUp += (s, e) => keys.Remove(e.KeyCode);
+
 
             timer.Interval = 20;
             timer.Tick += (s, e) => UpdateTransformations();
@@ -39,7 +41,7 @@ namespace _3D_SHAPE_EXPLORER.Services
             if (selectedShape == null)
                 return;
 
-            // Rotación
+            // Rotation
             if (keys.Contains(Keys.NumPad4)) selectedShape.RotationX -= RotationStep;
             if (keys.Contains(Keys.NumPad6)) selectedShape.RotationX += RotationStep;
             if (keys.Contains(Keys.NumPad8)) selectedShape.RotationY -= RotationStep;
@@ -47,11 +49,11 @@ namespace _3D_SHAPE_EXPLORER.Services
             if (keys.Contains(Keys.A)) selectedShape.RotationZ -= RotationStep;
             if (keys.Contains(Keys.D)) selectedShape.RotationZ += RotationStep;
 
-            // Escalado
+            // Scale
             if (keys.Contains(Keys.W)) selectedShape.ScaleFactor += ScaleStep;
             if (keys.Contains(Keys.S)) selectedShape.ScaleFactor = Math.Max(0.1f, selectedShape.ScaleFactor - ScaleStep);
 
-            // Traslación
+            // Traslate
             if (keys.Contains(Keys.J)) selectedShape.TranslateX -= TranslationStep;
             if (keys.Contains(Keys.L)) selectedShape.TranslateX += TranslationStep;
             if (keys.Contains(Keys.I)) selectedShape.TranslateY += TranslationStep;
@@ -59,7 +61,35 @@ namespace _3D_SHAPE_EXPLORER.Services
             if (keys.Contains(Keys.U)) selectedShape.TranslateZ -= TranslationStep;
             if (keys.Contains(Keys.O)) selectedShape.TranslateZ += TranslationStep;
 
+            
             targetCanvas.Invalidate(); // Redibuja
         }
+
+        private void HandleDeleteKey(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
+                Shape3D selectedShape = sceneManager.Shapes.Find(s => s.IsSelected);
+                if (selectedShape != null)
+                {
+                    var result = MessageBox.Show(
+                        "¿Deseas eliminar la figura seleccionada?",
+                        "Confirmar eliminación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        sceneManager.Shapes.Remove(selectedShape);
+                        targetCanvas.Invalidate(); 
+                    }
+                }
+            }
+        }
+
+        
+
+
     }
 }

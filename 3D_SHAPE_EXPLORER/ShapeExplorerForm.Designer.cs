@@ -39,7 +39,7 @@
             this.picCanvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.picCanvas.Location = new System.Drawing.Point(-5, 30);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(1213, 695);
+            this.picCanvas.Size = new System.Drawing.Size(1370, 815);
             this.picCanvas.TabIndex = 0;
             this.picCanvas.TabStop = false;
             this.picCanvas.Click += new System.EventHandler(this.picCanvas_Click);
@@ -47,7 +47,7 @@
             // 
             // btnEditionMode
             // 
-            this.btnEditionMode.Location = new System.Drawing.Point(1030, 1);
+            this.btnEditionMode.Location = new System.Drawing.Point(1194, 2);
             this.btnEditionMode.Name = "btnEditionMode";
             this.btnEditionMode.Size = new System.Drawing.Size(159, 23);
             this.btnEditionMode.TabIndex = 1;
@@ -74,12 +74,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1201, 723);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(1365, 846);
             this.Controls.Add(this.cmbFigures);
             this.Controls.Add(this.btnEditionMode);
             this.Controls.Add(this.picCanvas);
             this.Name = "ShapeExplorerForm";
-            this.Text = "Form1";
+            this.Text = "3D_SHAPE_EXPLORER";
             this.Load += new System.EventHandler(this.ShapeExplorerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
             this.ResumeLayout(false);

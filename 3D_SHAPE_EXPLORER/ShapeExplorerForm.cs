@@ -67,23 +67,6 @@ namespace _3D_SHAPE_EXPLORER
 
         }
 
-        private bool IsPointInsideShape(Point click, Shape3D shape)
-        {
-            var projectedPoints = shape.Points.Select(p => Projection3D.Project(p, picCanvas.Size)).ToList();
-            var screenBounds = GetBoundingBox(projectedPoints);
-
-            return screenBounds.Contains(click);
-        }
-
-        private RectangleF GetBoundingBox(List<PointF> points)
-        {
-            float minX = points.Min(p => p.X);
-            float minY = points.Min(p => p.Y);
-            float maxX = points.Max(p => p.X);
-            float maxY = points.Max(p => p.Y);
-            return new RectangleF(minX, minY, maxX - minX, maxY - minY);
-        }
-
 
         private void picCanvas_MouseClick(object sender, MouseEventArgs e)
         {
