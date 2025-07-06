@@ -11,6 +11,11 @@ namespace _3D_SHAPE_EXPLORER.Services
     {
         public List<Shape3D> Shapes { get; private set; } = new List<Shape3D>();
 
+        public int? SelectedVertexIndex = null;                    
+        public Tuple<int, int> SelectedEdge = null;                
+        public List<int> SelectedFace = null;                      
+
+
         public void Initialize()
         {
             var cube = new Cube();
@@ -20,14 +25,27 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         public void AddShape(Shape3D shape)
         {
-            float spacing = 120f;
+            float spacing = 200f;
             shape.GenerateShape();
-            shape.TranslateX = spacing * Shapes.Count;
-            shape.ApplyTransformations(); 
+
+            float centerX = shape.Points.Average(p => p.X);
+            float centerY = shape.Points.Average(p => p.Y);
+            float centerZ = shape.Points.Average(p => p.Z);
+
+            shape.Traslate(-centerX, -centerY, -centerZ);
+
+            shape.OriginalPoints = shape.Points.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList();
+
+            shape.TraslateX = spacing * Shapes.Count;
+
+            shape.ApplyTransformations();
 
             Shapes.Add(shape);
-
         }
+
+
+
+
 
         public void ResetSelectedShape()
         {
@@ -40,9 +58,9 @@ namespace _3D_SHAPE_EXPLORER.Services
 
                 selected.ScaleFactor = 1f;
 
-                selected.TranslateX = 0;
-                selected.TranslateY = 0;
-                selected.TranslateZ = 0;
+                selected.TraslateX = 0;
+                selected.TraslateY = 0;
+                selected.TraslateZ = 0;
             }
         }
 
