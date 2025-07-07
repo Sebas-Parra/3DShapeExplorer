@@ -16,7 +16,7 @@ namespace _3D_SHAPE_EXPLORER
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ShapeExplorerForm());
+            Application.Run(new SplashScreenForm());
         }
     }
 }

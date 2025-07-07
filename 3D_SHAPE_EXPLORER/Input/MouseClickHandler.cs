@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using _3D_SHAPE_EXPLORER.Models;
 using _3D_SHAPE_EXPLORER.Utils;
+using Guna.UI2.WinForms;
 
 namespace _3D_SHAPE_EXPLORER.Services
 {
@@ -12,11 +13,10 @@ namespace _3D_SHAPE_EXPLORER.Services
     {
         private readonly SceneManager sceneManager;
         private readonly PictureBox canvas;
-        private readonly RadioButton rbtnVertexes, rbtnEdges, rbtnFaces, rbtnPaintFace;
-        private Color currentPaintColor;
+        private readonly Guna2RadioButton rbtnVertexes, rbtnEdges, rbtnFaces, rbtnPaintFace; private Color currentPaintColor;
 
         public MouseClickHandler(SceneManager sceneManager, PictureBox canvas,
-            RadioButton rbtnVertexes, RadioButton rbtnEdges, RadioButton rbtnFaces, RadioButton rbtnPaintFace,
+            Guna2RadioButton rbtnVertexes, Guna2RadioButton rbtnEdges, Guna2RadioButton rbtnFaces, Guna2RadioButton rbtnPaintFace,
             Color paintColor)
         {
             this.sceneManager = sceneManager;
@@ -25,6 +25,7 @@ namespace _3D_SHAPE_EXPLORER.Services
             this.rbtnEdges = rbtnEdges;
             this.rbtnFaces = rbtnFaces;
             this.rbtnPaintFace = rbtnPaintFace;
+
             this.currentPaintColor = paintColor;
         }
 

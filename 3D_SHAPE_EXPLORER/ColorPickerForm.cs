@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 
 namespace _3D_SHAPE_EXPLORER
 {
@@ -17,7 +18,7 @@ namespace _3D_SHAPE_EXPLORER
         public ColorPickerForm(List<Color> colors)
         {
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            this.Size = new Size(180, 140); // ajustable
+            this.Size = new Size(190, 130);
             this.StartPosition = FormStartPosition.Manual;
 
             var panel = new TableLayoutPanel
@@ -30,21 +31,28 @@ namespace _3D_SHAPE_EXPLORER
 
             foreach (var color in colors)
             {
-                var btn = new Button
+                var btn = new Guna2Button
                 {
-                    BackColor = color,
-                    Margin = new Padding(2),
+                    FillColor = color,
                     Width = 24,
                     Height = 24,
-                    FlatStyle = FlatStyle.Flat
+                    Margin = new Padding(2),
+                    BorderRadius = 6,
+                    BorderThickness = 1,
+                    BorderColor = Color.Black,
+                    HoverState = { BorderColor = Color.DarkGray },
+                    PressedColor = Color.Black,
+                    CustomBorderColor = Color.Gray,
+                    Text = string.Empty
                 };
-                btn.FlatAppearance.BorderSize = 1;
+
                 btn.Click += (s, e) =>
                 {
-                    SelectedColor = ((Button)s).BackColor;
+                    SelectedColor = ((Guna2Button)s).FillColor;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 };
+
                 panel.Controls.Add(btn);
             }
 
