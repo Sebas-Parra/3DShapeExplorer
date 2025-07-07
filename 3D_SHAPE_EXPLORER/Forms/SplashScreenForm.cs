@@ -21,9 +21,11 @@ namespace _3D_SHAPE_EXPLORER
         public SplashScreenForm()
         {
             InitializeComponent();
+            //start at center
+            this.StartPosition = FormStartPosition.CenterScreen;
             guna2ProgressBar1.Maximum = 100;
             guna2ProgressBar1.Value = 0;
-            timer1.Interval = 30; // Velocidad de animación
+            timer1.Interval = 30;
             timer1.Start();
 
             
@@ -59,10 +61,10 @@ namespace _3D_SHAPE_EXPLORER
 
         private void SplashScreenForm_Load(object sender, EventArgs e)
         {
-            guna2HtmlLabel1.Text = ""; // Comienza vacío
+            guna2HtmlLabel1.Text = "";
 
             typingTimer = new Timer();
-            typingTimer.Interval = 100; // velocidad (en ms) entre letras
+            typingTimer.Interval = 100; 
             typingTimer.Tick += TypingTimer_Tick;
             typingTimer.Start();
         }
