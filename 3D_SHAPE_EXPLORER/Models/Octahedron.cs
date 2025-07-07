@@ -56,7 +56,7 @@ namespace _3D_SHAPE_EXPLORER.Models
             clone.Points = clone.OriginalPoints.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList(); 
             clone.Faces = this.Faces.Select(face => new List<int>(face)).ToList();
             clone.Edges = new List<(int, int)>(this.Edges);
-
+            clone.IsPainted = this.IsPainted;
             this.CopyTransformationsTo(clone);
             return clone;
         }

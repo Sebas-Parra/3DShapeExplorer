@@ -39,6 +39,8 @@ namespace _3D_SHAPE_EXPLORER.Models
 
         public List<Point3D> OriginalPoints { get; set; } = new List<Point3D>();
 
+        public bool IsPainted { get; set; } = false;
+        public Color PaintColor { get; set; } = Color.Gray;
 
         protected void CopyTransformationsTo(Shape3D other)
         {

@@ -20,6 +20,9 @@ namespace _3D_SHAPE_EXPLORER
         private ShapeRenderer renderer = new ShapeRenderer();
         private KeyboardController inputController;
         private string lastSelected = "";
+        private Color currentPaintColor = Color.Yellow;
+        private ContextMenuStrip colorMenu;
+
 
         public ShapeExplorerForm()
         {
@@ -36,6 +39,7 @@ namespace _3D_SHAPE_EXPLORER
             picCanvas.MouseClick += picCanvas_MouseClick;
             cmbMode.SelectedIndexChanged += ComboMode_SelectedIndexChanged;
             this.Load += ShapeExplorerForm_Load;
+            rbtnPaintFace.CheckedChanged += rbtnPaintFace_CheckedChanged;
 
 
 
@@ -47,8 +51,9 @@ namespace _3D_SHAPE_EXPLORER
         private void PanelCanvas_Paint(object sender, PaintEventArgs e)
         {
 
+            
             bool isInEditMode = rbtnVertexes.Checked || rbtnEdges.Checked || rbtnFaces.Checked;
-            renderer.Draw(e.Graphics, sceneManager.Shapes, picCanvas.Size, sceneManager, isInEditMode);
+            renderer.Draw(e.Graphics, sceneManager.Shapes, picCanvas.Size, sceneManager, isInEditMode, currentPaintColor);
 
 
         }
@@ -58,7 +63,12 @@ namespace _3D_SHAPE_EXPLORER
             rbtnVertexes.Visible = false;
             rbtnEdges.Visible = false;
             rbtnFaces.Visible = false;
-            cmbMode.SelectedIndex = 0; 
+            cmbMode.SelectedIndex = 0;
+
+            
+
+
+
 
         }
 
@@ -197,6 +207,53 @@ namespace _3D_SHAPE_EXPLORER
                                     sceneManager.SelectedFace = face;
                                     sceneManager.SelectedEdge = null;
                                     sceneManager.SelectedVertexIndex = null;
+
+                       
+
+                                    picCanvas.Invalidate();
+
+                                    
+
+
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (rbtnPaintFace.Checked)
+            {
+                foreach (var shape in sceneManager.Shapes)
+                {
+                    Shape3D workingShape = shape.Clone();
+                    workingShape.ApplyTransformations();
+
+                    var projected = workingShape.Points
+                        .Select(p => Projection3D.Project(p, panelSize))
+                        .ToList();
+
+                    for (int i = 0; i < shape.Faces.Count; i++)
+                    {
+                        var face = shape.Faces[i];
+                        var poly = face.Select(index => projected[index]).ToArray();
+
+                        using (var path = new System.Drawing.Drawing2D.GraphicsPath())
+                        {
+                            path.AddPolygon(poly);
+                            using (var region = new Region(path))
+                            {
+                                if (region.IsVisible(mouseLocation))
+                                {
+                                    shape.IsSelected = true;
+                                    sceneManager.SelectedFace = face;
+                                    sceneManager.SelectedEdge = null;
+                                    sceneManager.SelectedVertexIndex = null;
+
+                                    shape.IsPainted = true; // pinta toda la figura
+                                    shape.PaintColor = currentPaintColor;
+                                    Console.WriteLine($"Cara {i} pintada en figura {shape.GetType().Name}");
+
                                     picCanvas.Invalidate();
                                     return;
                                 }
@@ -205,6 +262,9 @@ namespace _3D_SHAPE_EXPLORER
                     }
                 }
             }
+
+
+
             else
             {
                 // Modo Object: selecciona figura
@@ -284,6 +344,8 @@ namespace _3D_SHAPE_EXPLORER
                 rbtnVertexes.Visible = true;
                 rbtnEdges.Visible = true;
                 rbtnFaces.Visible = true;
+                rbtnPaintFace.Visible = true;
+                btnSelectColor.Visible = rbtnPaintFace.Checked;
 
             }
             else
@@ -291,18 +353,39 @@ namespace _3D_SHAPE_EXPLORER
                 rbtnVertexes.Visible = false;
                 rbtnEdges.Visible = false;
                 rbtnFaces.Visible = false;
+                rbtnPaintFace.Visible = false;
 
                 rbtnVertexes.Checked = false;
                 rbtnEdges.Checked = false;
                 rbtnFaces.Checked = false;
+                rbtnPaintFace.Checked = false;
 
                 sceneManager.SelectedVertexIndex = null;
                 sceneManager.SelectedEdge = null;
                 sceneManager.SelectedFace = null;
-
+                btnSelectColor.Visible = false;
             }
         }
 
+        private void btnSelectColor_Click(object sender, EventArgs e)
+        {
+            var colores = new List<Color> { Color.Black, Color.White, Color.Orange, Color.Gold, Color.Green, Color.Teal,
+                                     Color.MidnightBlue, Color.DarkGray, Color.HotPink, Color.MediumPurple };
 
+            var colorForm = new ColorPickerForm(colores);
+            var buttonLocation = btnSelectColor.PointToScreen(Point.Empty);
+            colorForm.Location = new Point(buttonLocation.X, buttonLocation.Y + btnSelectColor.Height);
+
+            if (colorForm.ShowDialog() == DialogResult.OK)
+            {
+                currentPaintColor = colorForm.SelectedColor;
+                btnSelectColor.BackColor = currentPaintColor;
+            }
+        }
+
+        private void rbtnPaintFace_CheckedChanged(object sender, EventArgs e)
+        {
+            btnSelectColor.Visible = rbtnPaintFace.Checked;
+        }
     }
 }
