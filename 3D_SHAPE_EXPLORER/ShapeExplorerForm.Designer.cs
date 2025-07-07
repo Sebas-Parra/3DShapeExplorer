@@ -54,15 +54,9 @@
             // 
             this.cmbFigures.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFigures.FormattingEnabled = true;
-            this.cmbFigures.Items.AddRange(new object[] {
-            "Cube",
-            "Cylinder",
-            "DodecagonalPrism",
-            "Octahedron",
-            "Pyramid"});
-            this.cmbFigures.Location = new System.Drawing.Point(12, 1);
+            this.cmbFigures.Location = new System.Drawing.Point(12, 3);
             this.cmbFigures.Name = "cmbFigures";
-            this.cmbFigures.Size = new System.Drawing.Size(121, 24);
+            this.cmbFigures.Size = new System.Drawing.Size(256, 24);
             this.cmbFigures.TabIndex = 2;
             this.cmbFigures.SelectedIndexChanged += new System.EventHandler(this.cmbFigures_SelectedIndexChanged);
             // 
@@ -70,12 +64,9 @@
             // 
             this.cmbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMode.FormattingEnabled = true;
-            this.cmbMode.Items.AddRange(new object[] {
-            "Object Mode",
-            "Edition Mode"});
-            this.cmbMode.Location = new System.Drawing.Point(158, 2);
+            this.cmbMode.Location = new System.Drawing.Point(274, 2);
             this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(121, 24);
+            this.cmbMode.Size = new System.Drawing.Size(258, 24);
             this.cmbMode.TabIndex = 3;
             this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.cmbMode_SelectedIndexChanged);
             // 
@@ -83,7 +74,7 @@
             // 
             this.rbtnVertexes.AutoSize = true;
             this.rbtnVertexes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rbtnVertexes.Location = new System.Drawing.Point(285, 4);
+            this.rbtnVertexes.Location = new System.Drawing.Point(542, 2);
             this.rbtnVertexes.Name = "rbtnVertexes";
             this.rbtnVertexes.Size = new System.Drawing.Size(81, 20);
             this.rbtnVertexes.TabIndex = 7;
@@ -95,7 +86,7 @@
             // 
             this.rbtnFaces.AutoSize = true;
             this.rbtnFaces.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rbtnFaces.Location = new System.Drawing.Point(446, 6);
+            this.rbtnFaces.Location = new System.Drawing.Point(703, 4);
             this.rbtnFaces.Name = "rbtnFaces";
             this.rbtnFaces.Size = new System.Drawing.Size(66, 20);
             this.rbtnFaces.TabIndex = 9;
@@ -107,7 +98,7 @@
             // 
             this.rbtnEdges.AutoSize = true;
             this.rbtnEdges.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rbtnEdges.Location = new System.Drawing.Point(372, 4);
+            this.rbtnEdges.Location = new System.Drawing.Point(629, 2);
             this.rbtnEdges.Name = "rbtnEdges";
             this.rbtnEdges.Size = new System.Drawing.Size(68, 20);
             this.rbtnEdges.TabIndex = 8;
@@ -119,7 +110,7 @@
             // 
             this.rbtnPaintFace.AutoSize = true;
             this.rbtnPaintFace.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.rbtnPaintFace.Location = new System.Drawing.Point(518, 5);
+            this.rbtnPaintFace.Location = new System.Drawing.Point(775, 5);
             this.rbtnPaintFace.Name = "rbtnPaintFace";
             this.rbtnPaintFace.Size = new System.Drawing.Size(92, 20);
             this.rbtnPaintFace.TabIndex = 10;
@@ -130,7 +121,7 @@
             // 
             // btnSelectColor
             // 
-            this.btnSelectColor.Location = new System.Drawing.Point(616, 4);
+            this.btnSelectColor.Location = new System.Drawing.Point(873, 4);
             this.btnSelectColor.Name = "btnSelectColor";
             this.btnSelectColor.Size = new System.Drawing.Size(121, 23);
             this.btnSelectColor.TabIndex = 11;
