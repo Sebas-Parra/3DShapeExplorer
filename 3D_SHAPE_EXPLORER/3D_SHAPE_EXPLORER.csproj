@@ -52,20 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorPickerForm.cs">
+    <Compile Include="Forms\ColorPickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ColorPickerForm.Designer.cs">
+    <Compile Include="Forms\ColorPickerForm.Designer.cs">
       <DependentUpon>ColorPickerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Input\MouseClickHandler.cs" />
+    <Compile Include="Services\MouseClickHandler.cs" />
     <Compile Include="Services\SceneManager.cs" />
     <Compile Include="Services\ShapePainter.cs" />
     <Compile Include="Services\ShapeRenderer.cs" />
-    <Compile Include="ShapeExplorerForm.cs">
+    <Compile Include="Forms\ShapeExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ShapeExplorerForm.Designer.cs">
+    <Compile Include="Forms\ShapeExplorerForm.Designer.cs">
       <DependentUpon>ShapeExplorerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cube.cs" />
@@ -78,10 +78,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\KeyboardController.cs" />
-    <Compile Include="SplashScreenForm.cs">
+    <Compile Include="Forms\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SplashScreenForm.Designer.cs">
+    <Compile Include="Forms\SplashScreenForm.Designer.cs">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\ComboBoxItem.cs" />
@@ -89,10 +89,10 @@
     <Compile Include="Utils\FloodFillDFS.cs" />
     <Compile Include="Utils\Projection3D.cs" />
     <Compile Include="Utils\ShapeFactory.cs" />
-    <EmbeddedResource Include="ColorPickerForm.resx">
+    <EmbeddedResource Include="Forms\ColorPickerForm.resx">
       <DependentUpon>ColorPickerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ShapeExplorerForm.resx">
+    <EmbeddedResource Include="Forms\ShapeExplorerForm.resx">
       <DependentUpon>ShapeExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -104,7 +104,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SplashScreenForm.resx">
+    <EmbeddedResource Include="Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
