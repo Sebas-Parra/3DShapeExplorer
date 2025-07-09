@@ -132,8 +132,8 @@ namespace _3D_SHAPE_EXPLORER.Services
                 if (selectedShape != null)
                 {
                     var result = MessageBox.Show(
-                        "¿Deseas eliminar la figura seleccionada?",
-                        "Confirmar eliminación",
+                        "Do you want to delete the selected figure?",
+                        "Confirm deletion",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning
                     );

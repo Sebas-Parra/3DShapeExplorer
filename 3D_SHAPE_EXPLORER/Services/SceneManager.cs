@@ -25,7 +25,7 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         public void AddShape(Shape3D shape)
         {
-            float spacing = 120f;
+            float spacing = 100f;
             shape.GenerateShape();
 
             float centerX = shape.Points.Average(p => p.X);
