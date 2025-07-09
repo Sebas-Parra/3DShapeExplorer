@@ -1,67 +1,82 @@
 # 3DShapeExplorer
 
-## Tema
-Explorador de Figuras 3D
+## Theme
 
-## Objetivo
-Construir una aplicación interactiva en C# que permita visualizar primitivas 3D y aplicar transformaciones geométricas básicas como traslación, rotación y escala en tiempo real.
+3D Shape Explorer
 
-## Descripción
-3DShapeExplorer es una aplicación que permite a los usuarios explorar y visualizar figuras geométricas tridimensionales. La aplicación incluye al menos cinco primitivas 3D: cubo, esfera, cono, cilindro y pirámide. Los usuarios pueden aplicar transformaciones geométricas básicas utilizando las teclas del teclado para modificar la posición, orientación y tamaño de las figuras dinámicamente.
+## Objective
 
-### Funcionalidades
-- **Visualización de Primitivas 3D**: Muestra figuras geométricas en un entorno 3D interactivo.
-- **Transformaciones Geométricas**:
-  - **Traslación**: Mueve las figuras a lo largo de los ejes X, Y y Z utilizando las teclas "J", "L", "I", "K", "U" y "O".
-  - **Rotación**: Rota las figuras alrededor de los ejes X, Y y Z utilizando las teclas "NumPad4", "NumPad6", "NumPad8", "NumPad2", "A" y "D".
-  - **Escala**: Cambia el tamaño de las figuras de manera uniforme utilizando las teclas "W" y "S".
-- **Controles con Teclado**: Utiliza las teclas del teclado para aplicar transformaciones en tiempo real.
+Build an interactive C# application that allows users to visualize 3D primitives and apply basic geometric transformations such as translation, rotation, and scaling in real time.
 
-### Modos de Funcionamiento
-La aplicación cuenta con dos modos de funcionamiento:
+## Description
 
-1. **Object Mode**: En este modo, los usuarios pueden seleccionar una figura 3D y aplicar transformaciones como traslación, rotación y escala.
-2. **Edition Mode**: En este modo, los usuarios pueden editar y eliminar figuras 3D en el entorno.
+3DShapeExplorer is an application that allows users to explore and visualize three-dimensional geometric shapes. The application includes at least five 3D primitives: cube, sphere, cone, cylinder, and pyramid. Users can apply basic geometric transformations using keyboard keys to dynamically modify the position, orientation, and size of the shapes.
 
-## Requisitos
-- .NET 5.0 o superior
-- Un entorno de desarrollo compatible con C# (por ejemplo, Visual Studio)
+### Features
 
-## Instalación
-1. Clona el repositorio:
+* **3D Primitive Visualization**: Displays geometric shapes in an interactive 3D environment.
+* **Geometric Transformations**:
+
+  * **Translation**: Move the shapes along the X, Y, and Z axes using the "J", "L", "I", "K", "U", and "O" keys.
+  * **Rotation**: Rotate the shapes around the X, Y, and Z axes using the "NumPad4", "NumPad6", "NumPad8", "NumPad2", "A", and "D" keys.
+  * **Scaling**: Uniformly change the size of the shapes using the "W" and "S" keys.
+* **Keyboard Controls**: Use keyboard keys to apply real-time transformations.
+
+### Operating Modes
+
+The application includes two operating modes:
+
+1. **Object Mode**: In this mode, users can select a 3D shape and apply transformations such as translation, rotation, and scaling.
+2. **Edition Mode**: In this mode, users can edit and delete 3D shapes in the environment.
+
+## Requirements
+
+* .NET 5.0 or higher
+* A development environment compatible with C# (e.g., Visual Studio)
+
+## Installation
+
+1. Clone the repository:
+
    ```bash
    git clone https://github.com/Sebas-Parra/3DShapeExplorer.git
    ```
-2. Abre el proyecto en Visual Studio.
-3. Restaura los paquetes NuGet necesarios.
-4. Compila y ejecuta la aplicación.
+2. Open the project in Visual Studio.
+3. Restore the required NuGet packages.
+4. Build and run the application.
 
-## Uso
-1. Inicia la aplicación.
-2. Utiliza las teclas del teclado para aplicar las transformaciones deseadas:
-   - Traslación: "J", "L", "I", "K", "U", "O"
-   - Rotación: "NumPad4", "NumPad6", "NumPad8", "NumPad2", "A", "D"
-   - Escala: "W", "S"
-3. Observa cómo las figuras cambian en tiempo real.
+## Usage
 
-## Ejemplos de Figuras
-- Cubo
-- Cilindro
-- Prisma dodecagonal
-- Octahedron
-- Piramide
+1. Launch the application.
+2. Use keyboard keys to apply the desired transformations:
 
-## Contribuciones
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos pasos:
-1. Haz un fork del proyecto.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -m 'Añadir nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
+   * Translation: "J", "L", "I", "K", "U", "O"
+   * Rotation: "NumPad4", "NumPad6", "NumPad8", "NumPad2", "A", "D"
+   * Scaling: "W", "S"
+3. Observe how the shapes change in real time.
 
-## Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+## Example Shapes
+
+* Cube
+* Cylinder
+* Dodecagonal Prism
+* Octahedron
+* Pyramid
+
+## Contributions
+
+Contributions are welcome. If you'd like to contribute, please follow these steps:
+
+1. Fork the project.
+2. Create a new branch (`git checkout -b feature/new-feature`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature/new-feature`).
+5. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-¡Explora y diviértete creando con 3DShapeExplorer!
+Explore and have fun creating with 3DShapeExplorer!
