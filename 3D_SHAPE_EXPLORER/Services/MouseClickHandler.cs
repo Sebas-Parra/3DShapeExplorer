@@ -50,8 +50,9 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         private void HandleVertexClick(Point mouseLocation)
         {
-            foreach (var shape in sceneManager.Shapes)
+            for (int shapeIndex = 0; shapeIndex < sceneManager.Shapes.Count; shapeIndex++)
             {
+                var shape = sceneManager.Shapes[shapeIndex];
                 Shape3D workingShape = shape.Clone();
                 workingShape.ApplyTransformations();
                 var projected = workingShape.Points.Select(p => Projection3D.Project(p, canvas.Size)).ToList();
@@ -63,6 +64,7 @@ namespace _3D_SHAPE_EXPLORER.Services
                     if (dx * dx + dy * dy < 100)
                     {
                         shape.IsSelected = true;
+                        sceneManager.SelectedShapeIndex = sceneManager.Shapes.IndexOf(shape);
                         sceneManager.SelectedVertexIndex = i;
                         canvas.Invalidate();
                         return;
@@ -70,6 +72,7 @@ namespace _3D_SHAPE_EXPLORER.Services
                 }
             }
         }
+
 
         private void HandleEdgeClick(Point mouseLocation)
         {
@@ -93,6 +96,7 @@ namespace _3D_SHAPE_EXPLORER.Services
                         {
                             shape.IsSelected = true;
                             sceneManager.SelectedEdge = Tuple.Create(a, b);
+                            sceneManager.SelectedShapeIndex = sceneManager.Shapes.IndexOf(shape);
                             canvas.Invalidate();
                             return;
                         }
@@ -121,6 +125,8 @@ namespace _3D_SHAPE_EXPLORER.Services
                             {
                                 shape.IsSelected = true;
                                 sceneManager.SelectedFace = face;
+                                sceneManager.SelectedShapeIndex = sceneManager.Shapes.IndexOf(shape);
+
                                 canvas.Invalidate();
                                 return;
                             }
@@ -151,6 +157,8 @@ namespace _3D_SHAPE_EXPLORER.Services
                                 shape.IsSelected = true;
                                 shape.IsPainted = true;
                                 sceneManager.SelectedFace = face;
+                                sceneManager.SelectedShapeIndex = sceneManager.Shapes.IndexOf(shape);
+
                                 shape.PaintColor = currentPaintColor;
                                 canvas.Invalidate();
                                 return;

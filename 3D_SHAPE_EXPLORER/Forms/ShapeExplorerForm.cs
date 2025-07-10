@@ -153,13 +153,13 @@ namespace _3D_SHAPE_EXPLORER
                 if (string.IsNullOrEmpty(value))
                     return;
 
-                if (value == lastSelected) return;
+                //if (value == lastSelected) return;
 
                 lastSelected = value;
                 var shape = ShapeFactory.Create(value);
                 if (shape != null)
                 {
-                    ShapeFactory.CentrarYGuardarOriginales(shape);
+                    //ShapeFactory.CentrarYGuardarOriginales(shape);
                     sceneManager.AddShape(shape);
                     picCanvas.Invalidate();
                 }

@@ -13,7 +13,9 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         public int? SelectedVertexIndex = null;                    
         public Tuple<int, int> SelectedEdge = null;                
-        public List<int> SelectedFace = null;                      
+        public List<int> SelectedFace = null;
+        private int totalShapesInserted = 1;
+        public int? SelectedShapeIndex = null;  // <- para saber de qué figura es el vértice seleccionado
 
 
         public void Initialize()
@@ -36,11 +38,12 @@ namespace _3D_SHAPE_EXPLORER.Services
 
             shape.OriginalPoints = shape.Points.Select(p => new Point3D(p.X, p.Y, p.Z)).ToList();
 
-            shape.TraslateX = spacing * Shapes.Count;
+            shape.TraslateX = spacing * totalShapesInserted;
 
             shape.ApplyTransformations();
 
             Shapes.Add(shape);
+            totalShapesInserted++; 
         }
 
 

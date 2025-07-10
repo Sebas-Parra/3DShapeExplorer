@@ -62,7 +62,9 @@ namespace _3D_SHAPE_EXPLORER.Services
 
         private void DrawSelection(Graphics g, Shape3D shape, SceneManager sceneManager, List<PointF> points)
         {
-            if (sceneManager.SelectedVertexIndex.HasValue)
+            if (sceneManager.SelectedShapeIndex.HasValue &&
+                sceneManager.SelectedVertexIndex.HasValue &&
+                sceneManager.Shapes.IndexOf(shape) == sceneManager.SelectedShapeIndex.Value)
             {
                 int index = sceneManager.SelectedVertexIndex.Value;
                 if (index >= 0 && index < points.Count)
@@ -72,7 +74,11 @@ namespace _3D_SHAPE_EXPLORER.Services
                 }
             }
 
-            if (sceneManager.SelectedEdge != null)
+
+
+            if (sceneManager.SelectedShapeIndex.HasValue &&
+                sceneManager.SelectedEdge != null &&
+                sceneManager.Shapes.IndexOf(shape) == sceneManager.SelectedShapeIndex.Value)
             {
                 var (a, b) = sceneManager.SelectedEdge;
                 if (a < points.Count && b < points.Count)
@@ -84,7 +90,11 @@ namespace _3D_SHAPE_EXPLORER.Services
                 }
             }
 
-            if (sceneManager.SelectedFace != null && IsValidFace(sceneManager.SelectedFace, points.Count))
+
+            if (sceneManager.SelectedShapeIndex.HasValue &&
+                 sceneManager.SelectedFace != null &&
+                 sceneManager.Shapes.IndexOf(shape) == sceneManager.SelectedShapeIndex.Value &&
+                 IsValidFace(sceneManager.SelectedFace, points.Count))
             {
                 var facePoints = sceneManager.SelectedFace.Select(i => points[i]).ToArray();
                 using (Pen purplePen = new Pen(Color.Purple, 2))
@@ -92,6 +102,7 @@ namespace _3D_SHAPE_EXPLORER.Services
                     g.DrawPolygon(purplePen, facePoints);
                 }
             }
+
         }
 
         private bool IsValidFace(List<int> face, int pointCount)
